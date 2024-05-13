@@ -10,6 +10,12 @@ def crear_grafo_desde_archivo(archivo):
             G.add_edge(estacion_salida.strip('"'), estacion_destino.strip('"'), weight=costo)
             G.add_edge(estacion_destino.strip('"'), estacion_salida.strip('"'), weight=costo) # Agregar la ruta inversa
     return G
+
+def mostrar_destinos_disponibles(G, estacion_salida):
+    print("Destinos disponibles desde", estacion_salida, ":")
+    for vecino in G.neighbors(estacion_salida):
+        print(vecino)
+        
     while True:
         print("\n---- Menú ----")
         print("1. Ver destinos desde una estación de salida.")
