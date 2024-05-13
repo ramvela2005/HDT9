@@ -16,6 +16,18 @@ def mostrar_destinos_disponibles(G, estacion_salida):
     for vecino in G.neighbors(estacion_salida):
         print(vecino)
         
+def dijkstra(G, estacion_salida):
+    shortest_paths = nx.single_source_dijkstra_path_length(G, estacion_salida)
+    return shortest_paths
+
+def mostrar_grafo(G):
+    pos = nx.spring_layout(G)
+    nx.draw(G, pos, with_labels=True, node_color='skyblue', node_size=800, edge_color='k', linewidths=1, font_size=5)
+    labels = nx.get_edge_attributes(G, 'weight')
+    nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
+    plt.title("Grafo de Rutas")
+    plt.show()
+        
     while True:
         print("\n---- Menú ----")
         print("1. Ver destinos desde una estación de salida.")
