@@ -1,6 +1,15 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 
+def crear_grafo_desde_archivo(archivo):
+    G = nx.Graph()
+    with open(archivo, 'r') as file:
+        for line in file:
+            estacion_salida, estacion_destino, costo = line.strip().split(', ')
+            costo = int(costo)
+            G.add_edge(estacion_salida.strip('"'), estacion_destino.strip('"'), weight=costo)
+            G.add_edge(estacion_destino.strip('"'), estacion_salida.strip('"'), weight=costo) # Agregar la ruta inversa
+    return G
     while True:
         print("\n---- Menú ----")
         print("1. Ver destinos desde una estación de salida.")
